@@ -1,20 +1,35 @@
 package com.example.meteoapp.meteoapp.data.network;
 
 import android.util.Log;
+
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MeteoApiService {
 
-    private static MeteoApiClient API_SERVICE;
-    private static final String API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYWJjYW5mcmFAYWx1LmV" +
-            "kdS5ndmEuZXMiLCJqdGkiOiI3MWE5MmUzZC1hNGNjLTQ5NWItYWY2NC03Y2Y2YzEyOTZjM2UiLCJpc3MiO" +
-            "iJBRU1FVCIsImlhdCI6MTY2NjY5MzM1NSwidXNlcklkIjoiNzFhOTJlM2QtYTRjYy00OTViLWFmNjQtN2N" +
-            "mNmMxMjk2YzNlIiwicm9sZSI6IiJ9.dCkNvDzJ6NNTMPG-JT3RBdgVo1_eKqrowalPxRS8GO0";
+    private static Retrofit retrofit = null;
 
+    public static Retrofit getService(boolean diaria, int municipio) throws JSONException, IOException {
+        MeteoApiFirstRequest firstRequest = new MeteoApiFirstRequest();
+        String dataUrl = firstRequest.sendRequest(diaria, municipio);
 
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(dataUrl + "/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+
+    }
 
 
 

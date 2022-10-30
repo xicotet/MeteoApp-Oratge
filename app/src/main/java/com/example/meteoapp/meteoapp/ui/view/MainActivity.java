@@ -2,12 +2,15 @@ package com.example.meteoapp.meteoapp.ui.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.widget.Toolbar;
 
 import com.example.meteoapp.R;
 import com.example.meteoapp.meteoapp.data.model.Forecast;
 import com.example.meteoapp.meteoapp.data.network.MeteoApiClient;
 import com.example.meteoapp.meteoapp.data.network.MeteoApiFirstRequest;
 import com.example.meteoapp.meteoapp.data.network.MeteoApiService;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
+        //MaterialToolbar toolbar = binding.topAppBar;
+        //setActionBar((Toolbar) toolbar);
 
         BottomNavigationView navView = binding.navView;
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);

@@ -9,7 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.meteoapp.R;
 import com.example.meteoapp.databinding.FragmentHomeBinding;
 import com.example.meteoapp.meteoapp.ui.viewmodel.HomeViewModel;
 
@@ -24,6 +28,11 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        binding.btnSearch.setOnClickListener(view -> {
+            NavHostFragment.findNavController(HomeFragment.this)
+                    .navigate(R.id.action_navigation_home_to_searchFragment);
+        });
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);

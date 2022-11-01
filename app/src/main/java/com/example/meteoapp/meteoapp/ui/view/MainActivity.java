@@ -2,7 +2,11 @@ package com.example.meteoapp.meteoapp.ui.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toolbar;
 
 import com.example.meteoapp.R;
@@ -13,7 +17,9 @@ import com.example.meteoapp.meteoapp.data.network.MeteoApiService;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -43,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
+
+        /*addMenuProvider(new MenuProvider() {
+                @Override
+                public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+                    menuInflater.inflate(R.menu.top_app_bar, menu);
+                    MenuItem menuItem = menu.findItem(R.id.app_bar_search);
+                    SearchView sv  = (SearchView) menuItem.getActionView();
+                    sv.setQueryHint("Type here");
+                }
+
+                @Override
+                public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+
+
+                    return false;
+                }
+        });*/
         //MaterialToolbar toolbar = binding.topAppBar;
         //setActionBar((Toolbar) toolbar);
 

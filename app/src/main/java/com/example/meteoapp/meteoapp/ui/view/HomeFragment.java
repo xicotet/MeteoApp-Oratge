@@ -1,6 +1,8 @@
 package com.example.meteoapp.meteoapp.ui.view;
 
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,11 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        Bundle args = getArguments();
+
+        if (args != null){
+            Log.i("codigo", (String) args.getSerializable("codigoMunicipio"));
+        }
         binding.btnSearch.setOnClickListener(view -> {
             NavHostFragment.findNavController(HomeFragment.this)
                     .navigate(R.id.action_navigation_home_to_searchFragment);

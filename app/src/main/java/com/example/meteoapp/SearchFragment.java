@@ -3,21 +3,34 @@ package com.example.meteoapp;
 import android.content.Context;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.meteoapp.databinding.FragmentSearchBinding;
+import com.example.meteoapp.meteoapp.data.model.ParserMunicipios;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class SearchFragment extends Fragment {
 
@@ -53,14 +66,12 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
 
-        String[] pueblos = {"Betxi", "Cordoba", "Bilbao", "Betera", "Corda", "Pontones",
-            "Alicante", "Naquera"};
-        List<String> pueblosLista = new ArrayList<String>(Arrays.asList(pueblos));
-        ArrayAdapter<String> pueblosAdapter = new ArrayAdapter<String>(
+        List<String> pueblosLista = new ArrayList<>();
+        ArrayAdapter<String> pueblosAdapter = new ArrayAdapter<>(
                 getContext(),
                 R.layout.search_suggestion_item,
                 R.id.txtSuggestionName,
@@ -68,6 +79,31 @@ public class SearchFragment extends Fragment {
         );
 
         binding.lvAvailableTown.setAdapter(pueblosAdapter);
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            try {
+                InputStream inputStream = getContext().getAssets().open("codigos_municipios.xml");
+                ParserMunicipios parserMunicipios = new ParserMunicipios(inputStream);
+
+                handler.post(() -> {
+                    pueblosAdapter.clear();
+                    pueblosAdapter.addAll(parserMunicipios.getListaMunicipios());
+                });
+
+                inputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
+        });
+        //executor.shutdown();
+
 
         //Para que muestre el teclado cuando recibe focus el SearchView
         binding.svSearchTown.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -83,6 +119,7 @@ public class SearchFragment extends Fragment {
         });
 
         binding.svSearchTown.requestFocus();
+
         binding.svSearchTown.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -90,7 +127,6 @@ public class SearchFragment extends Fragment {
                 //Cuando se presiona boton de busqueda del teclado
                 binding.svSearchTown.clearFocus(); //Quitar el cursor
                 if(pueblosLista.contains(query)){
-                    Log.i("submit", query);
                     pueblosAdapter.getFilter().filter(query);
                 }
                 return false;
@@ -98,10 +134,20 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("hola", newText);
                 pueblosAdapter.getFilter().filter(newText);
                 return false;
             }
+        });
+
+        binding.lvAvailableTown.setOnItemClickListener((adapterView, view, i, l) -> {
+            String nombrePueblo = (String) adapterView.getItemAtPosition(i);
+            String codigoMunicipio = ParserMunicipios.getCodigoMunicipio(nombrePueblo);
+
+            Bundle args = new Bundle();
+            args.putSerializable("codigoMunicipio", codigoMunicipio);
+
+            NavHostFragment.findNavController(SearchFragment.this)
+                    .navigate(R.id.action_searchFragment_to_navigation_home2, args);
         });
 
         return binding.getRoot();

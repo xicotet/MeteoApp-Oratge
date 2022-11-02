@@ -150,6 +150,12 @@ public class SearchFragment extends Fragment {
                     .navigate(R.id.action_searchFragment_to_navigation_home2, args);
         });
 
+        binding.imgbtnClose.setOnClickListener(view -> {
+            Log.i("cierra", "cierra coño");
+            NavHostFragment.findNavController(SearchFragment.this)
+                    .navigate(R.id.action_searchFragment_to_navigation_home2);
+        });
+
         return binding.getRoot();
     }
 }

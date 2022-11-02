@@ -37,33 +37,9 @@ public class SearchFragment extends Fragment {
 
     FragmentSearchBinding binding;
 
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    private String mParam1;
-//    private String mParam2;
-
-    public SearchFragment() {
-
-    }
-
-    /*public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
-
     }
 
     @Override
@@ -152,7 +128,6 @@ public class SearchFragment extends Fragment {
         });
 
         binding.imgbtnClose.setOnClickListener(view -> {
-            Log.i("cierra", "cierra coño");
             NavHostFragment.findNavController(SearchFragment.this)
                     .navigate(R.id.action_searchFragment_to_navigation_home2);
         });

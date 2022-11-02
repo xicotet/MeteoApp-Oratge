@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_close_12.xml" value="0.158" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_12_red.xml" value="0.2425" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_hourly.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.14166666666666666" />

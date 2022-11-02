@@ -36,13 +36,14 @@ public class HomeFragment extends Fragment {
         if (args != null){
             Log.i("codigo", (String) args.getSerializable("codigoMunicipio"));
         }
+
         binding.btnSearch.setOnClickListener(view -> {
             NavHostFragment.findNavController(HomeFragment.this)
                     .navigate(R.id.action_navigation_home_to_searchFragment);
         });
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

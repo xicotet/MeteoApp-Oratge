@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/txtCurrentRainProb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/umbrella_svgrepo"
+        android:drawablePadding="5dp"
+        android:text="20%"
+        app:layout_constraintEnd_toEndOf="@+id/txtCurrentHumidity"
+        app:layout_constraintStart_toStartOf="@+id/txtCurrentHumidity"
+        app:layout_constraintTop_toBottomOf="@+id/txtCurrentHumidity" />
+
+    <TextView
+        android:id="@+id/txtCurrentHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:drawableStart="@drawable/ic_baseline_water_drop_24"
+        android:drawablePadding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgCurrentSkyState"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCurrentTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:text="21º"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtProvinceName"
+        app:layout_constraintStart_toEndOf="@+id/txtTownName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtProvinceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Provincia"
+        app:layout_constraintTop_toBottomOf="@id/txtTownName"
+        app:layout_constraintLeft_toLeftOf="@id/txtTownName"
+        />
+
+    <TextView
+        android:id="@+id/txtTownName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Municipio"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgCurrentSkyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCurrentTemp"
+        app:layout_constraintStart_toEndOf="@+id/txtCurrentTemp"
+        app:layout_constraintTop_toTopOf="@+id/txtCurrentTemp"
+        app:srcCompat="@drawable/ic_baseline_wb_sunny_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>

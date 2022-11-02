@@ -10,23 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.meteoapp.databinding.FragmentDashboardBinding;
-import com.example.meteoapp.meteoapp.ui.viewmodel.DashboardViewModel;
+import com.example.meteoapp.databinding.FragmentHourlyBinding;
+import com.example.meteoapp.meteoapp.ui.viewmodel.HourlyViewModel;
 
-public class DashboardFragment extends Fragment {
+public class HourlyFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentHourlyBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        HourlyViewModel hourlyViewModel =
+                new ViewModelProvider(this).get(HourlyViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentHourlyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.txtHourly;
+        hourlyViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

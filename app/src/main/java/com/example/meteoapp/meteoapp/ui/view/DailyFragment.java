@@ -10,23 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.meteoapp.databinding.FragmentNotificationsBinding;
-import com.example.meteoapp.meteoapp.ui.viewmodel.NotificationsViewModel;
+import com.example.meteoapp.databinding.FragmentDailyBinding;
+import com.example.meteoapp.meteoapp.ui.viewmodel.DailyViewModel;
 
-public class NotificationsFragment extends Fragment {
+public class DailyFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentDailyBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        DailyViewModel dailyViewModel =
+                new ViewModelProvider(this).get(DailyViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentDailyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.txtDaily;
+        dailyViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

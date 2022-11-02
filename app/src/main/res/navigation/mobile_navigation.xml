@@ -16,19 +16,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.meteoapp.meteoapp.ui.view.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_hourly"
+        android:name="com.example.meteoapp.meteoapp.ui.view.HourlyFragment"
+        android:label="@string/title_hourly"
+        tools:layout="@layout/fragment_hourly" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.meteoapp.meteoapp.ui.view.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_daily"
+        android:name="com.example.meteoapp.meteoapp.ui.view.DailyFragment"
+        android:label="@string/title_daily"
+        tools:layout="@layout/fragment_daily" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.meteoapp.SearchFragment"
+        android:name="com.example.meteoapp.meteoapp.ui.view.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action

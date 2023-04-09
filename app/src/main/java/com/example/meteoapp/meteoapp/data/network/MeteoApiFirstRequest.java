@@ -29,10 +29,6 @@ public class MeteoApiFirstRequest {
 
     public MeteoApiFirstRequest() {
        requestUrl = "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/";
-       API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYWJjYW5mcmFAYWx1LmV" +
-                "kdS5ndmEuZXMiLCJqdGkiOiI3MWE5MmUzZC1hNGNjLTQ5NWItYWY2NC03Y2Y2YzEyOTZjM2UiLCJpc3MiO" +
-                "iJBRU1FVCIsImlhdCI6MTY2NjY5MzM1NSwidXNlcklkIjoiNzFhOTJlM2QtYTRjYy00OTViLWFmNjQtN2N" +
-                "mNmMxMjk2YzNlIiwicm9sZSI6IiJ9.dCkNvDzJ6NNTMPG-JT3RBdgVo1_eKqrowalPxRS8GO0";
     }
 
     public String sendRequest(boolean diaria, int municipio) throws IOException, JSONException {
